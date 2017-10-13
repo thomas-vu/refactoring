@@ -93,7 +93,7 @@ public class Player : NetworkBehaviour
     #region ClientRpc
 
     [ClientRpc]
-    public void RpcShoot(string target, int indexInHand)
+    public void RpcShoot(string target)
     {
         Event shootEvent = new Event
         (
@@ -105,13 +105,11 @@ public class Player : NetworkBehaviour
 
         Logic.Instance.eventActive = true;
         Logic.Instance.currentEvent = shootEvent;
-        StartCoroutine(Logic.Instance.StartEvent("shootSpring", indexInHand playerNumber.ToString(), "shootSpring", target));
 
         // visual for updating the hand
         if (isLocalPlayer)
         {
             Transform selfHandVisual = visual.transform.Find("Hand");
-            selfHandVisual.GetComponent<VisualContainer>().Remove(selfHandVisual.transform.GetChild(indexInHand));
 
             Sequence s = DOTween.Sequence();
 
