@@ -230,7 +230,7 @@ public class Logic : NetworkBehaviour
         }
     }
 
-    public IEnumerator BeginIntentPhase(float eventTimeLeft)
+    public IEnumerator IntentPhase(float eventTimeLeft)
     {
         // intent phase countdown
         while (eventTimeLeft > 0f)
@@ -272,7 +272,7 @@ public class Logic : NetworkBehaviour
         yield return StartCoroutine(card.GetComponent<Draggable>().PlayAnimation("SuccessfullyPlayed"));
         yield return StartCoroutine(ShowEvent(initiator, eventName, target));
 
-        StartCoroutine(BeginIntentPhase(15f));  // TODO: put timer in a settings script
+        StartCoroutine(IntentPhase(15f));  // TODO: put timer in a settings script
     }
 
     IEnumerator ShowEvent(string initiator, string eventName, string target)
